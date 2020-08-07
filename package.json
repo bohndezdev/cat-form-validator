@@ -1,0 +1,45 @@
+{
+  "name": "cat-form-validator",
+  "version": "1.0.0",
+  "description": "Simple JS form validator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack -w --mode development",
+    "build": "webpack --mode production",
+    "lint": "eslint --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bohndezdev/cat-form-validator.git"
+  },
+  "keywords": [
+    "form",
+    "validator",
+    "easy",
+    "to",
+    "use",
+    "javascript"
+  ],
+  "author": "Boris Hernández <bohndez.dev@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bohndezdev/cat-form-validator/issues"
+  },
+  "homepage": "https://github.com/bohndezdev/cat-form-validator#readme",
+  "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "eslint": "^7.6.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}
