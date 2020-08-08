@@ -10,7 +10,6 @@ export const validateByListOfType = (value, validationsList) => {
   let isValid = false
   for (let i = validationsList.length - 1; i >= 0; i--) {
     const functionToCall = validationsList[i]
-    console.log('validating: ', validationsList[i])
     if (validations[functionToCall + 'Field'](value)) {
       isValid = true
     } else {

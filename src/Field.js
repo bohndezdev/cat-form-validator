@@ -9,6 +9,10 @@ export class Field {
     this.isValid = false
   }
 
+  /**
+   * Validate adding an event listener to each form field.
+   * @return {void} Doesn't return anything.
+   */
   validateWithEventListener () {
     if (this.onEvent) {
       this.field.addEventListener(this.onEvent, (e) => {
@@ -19,21 +23,21 @@ export class Field {
           removeValidCssClass(this.field)
           this.isValid = false
         }
-        console.log('isValid: ', this.isValid)
       })
     }
   }
 
+  /**
+   * Validate field.
+   * @return {boolean} True if the field is valid, False if is not.
+   */
   validate () {
     if (validateByListOfType(this.field.value, this.validations)) {
-      this.field.classList.remove('cat-form-invalid')
-      this.field.classList.add('cat-form-valid')
+      addValidCssClass(this.field)
       this.isValid = true
     } else {
-      this.field.classList.remove('cat-form-valid')
-      this.field.classList.add('cat-form-invalid')
+      removeValidCssClass(this.field)
     }
-    console.log('isValid: ', this.isValid)
     return this.isValid
   }
 }
