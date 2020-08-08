@@ -18,6 +18,9 @@
       width: 100%;
       margin-bottom: 10px;
     }
+    input.cat-form-invalid {
+      border: 1px solid red;
+    }
   </style>
 </head>
 <body>
@@ -29,6 +32,8 @@
         <input type="text" name="textField" id="textField">
         <div id="textFieldError">Field Required</div>
       </div>
+
+      <button type="submit" id="submitForm">Send</button>
     </form>
   </div>
 
@@ -36,9 +41,16 @@
 
   <script>
 
-    var form = new catForm.formField(
-        document.querySelector('#textField'),
-        ['required']);
+    var form = new catForm.CreateForm([
+        {
+          field: document.querySelector('#textField'),
+          validations: [
+            'required'
+          ],
+          onEvent: 'blur'
+        }
+      ]
+    );
 
     form.validate();
   </script>
