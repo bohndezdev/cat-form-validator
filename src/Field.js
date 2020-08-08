@@ -11,7 +11,7 @@ export class Field {
   validateWithEventListener () {
     if (this.onEvent) {
       this.field.addEventListener(this.onEvent, (e) => {
-        if (this.validateByType(this.validations)) {
+        if (this.validateByType(this.field.value, this.validations)) {
           this.addValidCssClass(this.field)
           this.isValid = true
         } else {
@@ -24,7 +24,7 @@ export class Field {
   }
 
   validate () {
-    if (validator.requiredField(this.field.value)) {
+    if (this.validateByType(this.field.value, this.validations)) {
       this.field.classList.remove('cat-form-invalid')
       this.field.classList.add('cat-form-valid')
       this.isValid = true
@@ -41,15 +41,19 @@ export class Field {
    * @param  {Array<string>} validationsList An array of string
    * @return {boolean} if one of the validations doesn's pass return false.
    */
-  validateByType (validationsList) {
+  validateByType (value, validationsList) {
+    let isValid = false
     for (let i = validationsList.length - 1; i >= 0; i--) {
       const functionToCall = validationsList[i]
       console.log('validating: ', validationsList[i])
-      if (!validator[functionToCall + 'Field'](this.field.value)) {
-        return false
+      if (validator[functionToCall + 'Field'](value)) {
+        isValid = true
+      } else {
+        isValid = false
+        break
       }
     }
-    return true
+    return isValid
   }
 
   addValidCssClass (element) {
