@@ -12,12 +12,10 @@ export class Field {
     if (this.onEvent) {
       this.field.addEventListener(this.onEvent, (e) => {
         if (requiredField(e.target.value)) {
-          this.field.classList.remove('cat-form-invalid')
-          this.field.classList.add('cat-form-valid')
+          this.addValidCssClass(this.field)
           this.isValid = true
         } else {
-          this.field.classList.remove('cat-form-valid')
-          this.field.classList.add('cat-form-invalid')
+          this.removeValidCssClass(this.field)
           this.isValid = false
         }
         console.log('isValid: ', this.isValid)
@@ -36,5 +34,15 @@ export class Field {
     }
     console.log('isValid: ', this.isValid)
     return this.isValid
+  }
+
+  addValidCssClass (element) {
+    element.classList.remove('cat-form-invalid')
+    element.classList.add('cat-form-valid')
+  }
+
+  removeValidCssClass (element) {
+    this.field.classList.remove('cat-form-valid')
+    this.field.classList.add('cat-form-invalid')
   }
 }

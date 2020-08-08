@@ -28,9 +28,14 @@
   <div class="wrap">
     <form action="">
       <div class="field">
-        <label for="textField">Text Field</label>
-        <input type="text" name="textField" id="textField">
-        <div id="textFieldError">Field Required</div>
+        <label for="nameField">Name</label>
+        <input type="text" name="nameField" id="nameField">
+        <div id="nameFieldError">Field Required</div>
+      </div>
+      <div class="field">
+        <label for="lastNameField">Last Name</label>
+        <input type="text" name="lastNameField" id="lastNameField">
+        <div id="lastNameFieldError">Field Required</div>
       </div>
 
       <button type="submit" id="submitForm">Send</button>
@@ -44,7 +49,14 @@
     // Crate a form
     var form = new catForm.CreateForm([
         {
-          field: document.querySelector('#textField'),
+          field: document.querySelector('#nameField'),
+          validations: [
+            'required'
+          ],
+          onEvent: 'blur'
+        },
+        {
+          field: document.querySelector('#lastNameField'),
           validations: [
             'required'
           ],
