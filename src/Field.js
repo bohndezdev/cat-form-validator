@@ -1,4 +1,5 @@
 import * as validator from './validators'
+import { addValidCssClass, removeValidCssClass } from './utils'
 
 export class Field {
   constructor (field, validations, onEvent = null) {
@@ -12,10 +13,10 @@ export class Field {
     if (this.onEvent) {
       this.field.addEventListener(this.onEvent, (e) => {
         if (this.validateByType(this.field.value, this.validations)) {
-          this.addValidCssClass(this.field)
+          addValidCssClass(this.field)
           this.isValid = true
         } else {
-          this.removeValidCssClass(this.field)
+          removeValidCssClass(this.field)
           this.isValid = false
         }
         console.log('isValid: ', this.isValid)
@@ -54,15 +55,5 @@ export class Field {
       }
     }
     return isValid
-  }
-
-  addValidCssClass (element) {
-    element.classList.remove('cat-form-invalid')
-    element.classList.add('cat-form-valid')
-  }
-
-  removeValidCssClass (element) {
-    this.field.classList.remove('cat-form-valid')
-    this.field.classList.add('cat-form-invalid')
   }
 }
