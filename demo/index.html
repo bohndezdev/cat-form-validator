@@ -36,7 +36,11 @@
 
   <script>
 
-    catForm.saludos();
+    var form = new catForm.formField(
+        document.querySelector('#textField'),
+        ['required']);
+
+    form.validate();
   </script>
 
 

@@ -1,7 +1,10 @@
 export class formField {
-  constructor(field, validations ) { }
+  constructor (field, validations) {
+    this.field = field
+    this.validations = validations
+  }
 
-  valiate() {
-    console.log('validating')
+  validate () {
+    console.log(`validating ${this.field} and ${this.validations[0]}`)
   }
 }
