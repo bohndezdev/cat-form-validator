@@ -4,8 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+
+  <style>
+    .wrap {
+      width: 100%;
+      max-width: 900px;
+      margin: 30px auto;
+    }
+    label {
+      width: 100%;
+    }
+    input {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 <body>
+
+  <div class="wrap">
+    <form action="">
+      <div class="field">
+        <label for="textField">Text Field</label>
+        <input type="text" name="textField" id="textField">
+        <div id="textFieldError">Field Required</div>
+      </div>
+    </form>
+  </div>
+
   <script src="./../lib/index.js"></script>
 
   <script>
