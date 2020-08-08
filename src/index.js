@@ -1,3 +1,1 @@
-export const saludos = () => {
-  console.log('hola')
-}
+export * from './Form'
