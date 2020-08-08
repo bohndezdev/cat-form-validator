@@ -10,12 +10,14 @@ export class Field {
   validate () {
     if (this.onEvent) {
       this.field.addEventListener(this.onEvent, (e) => {
-        if (!requiredField(this.field.value)) {
-          this.field.classList.add('cat-form-invalid')
-        } else {
+        if (requiredField(e.target.value)) {
           this.field.classList.remove('cat-form-invalid')
+          this.field.classList.add('cat-form-valid')
+        } else {
+          this.field.classList.remove('cat-form-valid')
+          this.field.classList.add('cat-form-invalid')
         }
-        console.log('isValid: ', requiredField(this.field.value))
+        console.log('isValid: ', requiredField(e.target.value))
       })
     }
   }
