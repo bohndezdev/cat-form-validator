@@ -1,4 +1,4 @@
-import { requiredField } from './validators'
+import * as validator from './validators'
 
 export class Field {
   constructor (field, validations, onEvent = null) {
@@ -11,7 +11,7 @@ export class Field {
   validateWithEventListener () {
     if (this.onEvent) {
       this.field.addEventListener(this.onEvent, (e) => {
-        if (requiredField(e.target.value)) {
+        if (this.validateByType(this.validations)) {
           this.addValidCssClass(this.field)
           this.isValid = true
         } else {
@@ -24,7 +24,7 @@ export class Field {
   }
 
   validate () {
-    if (requiredField(this.field.value)) {
+    if (validator.requiredField(this.field.value)) {
       this.field.classList.remove('cat-form-invalid')
       this.field.classList.add('cat-form-valid')
       this.isValid = true
@@ -34,6 +34,22 @@ export class Field {
     }
     console.log('isValid: ', this.isValid)
     return this.isValid
+  }
+
+  /**
+   * Validates a VALUE against a list of types of validations
+   * @param  {Array<string>} validationsList An array of string
+   * @return {boolean} if one of the validations doesn's pass return false.
+   */
+  validateByType (validationsList) {
+    for (let i = validationsList.length - 1; i >= 0; i--) {
+      const functionToCall = validationsList[i]
+      console.log('validating: ', validationsList[i])
+      if (!validator[functionToCall + 'Field'](this.field.value)) {
+        return false
+      }
+    }
+    return true
   }
 
   addValidCssClass (element) {
