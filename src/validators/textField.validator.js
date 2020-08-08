@@ -4,7 +4,7 @@
  * @return {boolean} Return true if has only letters and false if not.
  */
 export const textField = (value) => {
-  const expr = /^[a-zA-Z]/
+  const expr = /^[a-zA-Z]*$/
   if (!expr.test(value)) {
     return false
   } else {
