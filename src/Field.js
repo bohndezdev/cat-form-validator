@@ -37,6 +37,7 @@ export class Field {
       this.isValid = true
     } else {
       removeValidCssClass(this.field)
+      this.isValid = false
     }
     return this.isValid
   }

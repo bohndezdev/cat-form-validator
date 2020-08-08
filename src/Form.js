@@ -23,10 +23,13 @@ export class CreateForm {
    * @return {boolean} True if all fields are valid. False id one or more are invalid.
    */
   validate () {
+    this.isValid = true
     for (let i = 0; i < this.fields.length; i++) {
       const field = new Field(this.fields[i].field, this.fields[i].validations, this.fields[i].onEvent)
 
-      field.validate()
+      if (!field.validate()) {
+        this.isValid = false
+      }
     }
 
     return this.isValid
