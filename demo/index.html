@@ -41,6 +41,7 @@
 
   <script>
 
+    // Crate a form
     var form = new catForm.CreateForm([
         {
           field: document.querySelector('#textField'),
@@ -52,7 +53,15 @@
       ]
     );
 
-    form.validate();
+    // Validate form with listeners
+    form.validateWithEventListener();
+    
+
+    // Validate form
+    document.querySelector('#submitForm').addEventListener('click', function(e) {
+      e.preventDefault()
+      form.validate();
+    })
   </script>
 
 

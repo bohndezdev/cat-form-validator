@@ -1,9 +1,19 @@
 import { Field } from './Field'
 
 export class CreateForm {
-  constructor (fields) {
+  constructor (fields, submitElement = null) {
     this.fields = fields
     this.isValid = false
+  }
+
+  validateWithEventListener () {
+    console.log('validando formulario con listeners')
+
+    for (let i = 0; i < this.fields.length; i++) {
+      const field = new Field(this.fields[i].field, this.fields[i].validations, this.fields[i].onEvent)
+
+      field.validateWithEventListener()
+    }
   }
 
   validate () {
