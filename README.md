@@ -29,12 +29,12 @@ We ar going to validate a form with 2 fields.
   <div class="field">
     <label for="nameField">Name</label>
     <input type="text" name="nameField" id="nameField">
-    <div id="nameFieldError">Field Required</div>
+    <div id="nameFieldError"></div>
   </div>
   <div class="field">
     <label for="lastNameField">Last Name</label>
     <input type="text" name="lastNameField" id="lastNameField">
-    <div id="lastNameFieldError">Field Required</div>
+    <div id="lastNameFieldError"></div>
   </div>
 
   <button type="submit" id="submitForm">Send</button>
@@ -45,27 +45,36 @@ We ar going to validate a form with 2 fields.
 #### Your JS file
 ```js
 // Crate a form
-var form = new catForm.CreateForm([
+var form = new catForm.CreateCatForm(
+  [
     {
-      field: document.querySelector('#nameField'), // Html Input to validate
-      validations: [ // List of types of validations
-        'required', // Type of validation
-        'text'      // Type of validation
+      field: document.querySelector('#nameField'),
+      invalidMessageElement: document.querySelector('#nameFieldError'),
+      validations: [
+        {
+          type: 'required',
+          invalidMessage: 'This field is required'
+        },
+        {
+          type: 'text',
+          invalidMessage: 'This field is only for text'
+        },
       ],
-      onEvent: 'blur' // Event that trigger the validation
+      onEvent: 'blur'
     },
     {
-      field: document.querySelector('#lastNameField'), // Html Input to validate
+      field: document.querySelector('#lastNameField'),
+      invalidMessageElement: document.querySelector('#lastNameFieldError'),
       validations: [
-        'required'    // Type of validation
+        {
+          type: 'required',
+          invalidMessage: 'This field is required'
+        },
       ],
-      onEvent: 'blur' // Event that trigger the validation
-    }
+      onEvent: 'blur'
+    },
   ]
 );
-
-// Validate form with listeners (When onEven be triggered).
-form.validateWithEventListener();
 
 // Validate form (When submit button be pressed).
 document.querySelector('#submitForm').addEventListener('click', function(e) {
@@ -78,9 +87,26 @@ document.querySelector('#submitForm').addEventListener('click', function(e) {
 Option | Type | Description
 ------ | ---- | -----------
 field  | HTML Element | The input or field that you want to validate
-validations  | Array<string> | A list of type of validations for the input or field
+validations  | Array<object> | A list of type of validations for the input or field
 onEvent  | string | Name of the event that you want to trigger a validation on an input or field
 
+### Fields
+For now those are the fields types that you can validate:
+* input `<input>`
+* textarea `<textarea>
+
+### Validations
+An example of an object for the Array validations:
+```js
+{
+  type: 'required',
+  invalidMessage: 'This field is required'
+}
+```
+
+#### Types accepted:
+  * 'required'
+  * 'text'
 
 ## Develop
 ### How to run develop
