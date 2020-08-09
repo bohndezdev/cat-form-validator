@@ -2,24 +2,22 @@
   "name": "cat-form-validator",
   "version": "0.1.0",
   "description": "Simple JS form validator",
-  "main": "index.js",
+  "main": "lib/cat-form.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack -w --mode development",
     "dev": "webpack -w --mode development",
     "build": "webpack --mode production",
-    "lint": "eslint --fix"
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bohndezdev/cat-form-validator.git"
   },
   "keywords": [
-    "form",
+    "forms",
     "validator",
-    "easy",
-    "to",
-    "use",
     "javascript"
   ],
   "author": "Boris Hernández <bohndez.dev@gmail.com>",
