@@ -33,7 +33,7 @@ const form = new CreateCatForm(
 );
 
 // Validate form with listeners
-form.validateWithEventListener();
+// form.validateWithEventListener();
 
 // Validate form
 document.querySelector('#submitForm').addEventListener('click', function(e) {
