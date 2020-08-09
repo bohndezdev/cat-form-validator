@@ -1,6 +1,6 @@
 {
   "name": "cat-form-validator",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Simple JS form validator",
   "main": "index.js",
   "scripts": {
