@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo Cat Form Validator</title>
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+
+  <style>
+    .wrap {
+      width: 100%;
+      max-width: 900px;
+      margin: 30px auto;
+    }
+    label {
+      width: 100%;
+    }
+    input, textarea {
+      width: 100%;
+    }
+    input.cat-form-invalid,
+    textarea.cat-form-invalid {
+      border: 1px solid red;
+    }
+    .field {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+    <form action="">
+      <div class="field">
+        <label for="nameField">Name</label>
+        <input type="text" name="nameField" id="nameField">
+        <div id="nameFieldError"></div>
+      </div>
+      <div class="field">
+        <label for="lastNameField">Last Name</label>
+        <input type="text" name="lastNameField" id="lastNameField">
+        <div id="lastNameFieldError"></div>
+      </div>
+      <div class="field">
+        <label for="claimField">Claim</label>
+        <textarea name="claimField" id="claimField" cols="30" rows="10"></textarea>
+        <div id="claimFieldError"></div>
+      </div>
+
+
+
+      <button type="submit" id="submitForm">Send</button>
+    </form>
+  </div>
+
+
+</body>
+</html>
