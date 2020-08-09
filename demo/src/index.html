@@ -14,10 +14,11 @@
     label {
       width: 100%;
     }
-    input {
+    input, textarea {
       width: 100%;
     }
-    input.cat-form-invalid {
+    input.cat-form-invalid,
+    textarea.cat-form-invalid {
       border: 1px solid red;
     }
     .field {
@@ -32,13 +33,20 @@
       <div class="field">
         <label for="nameField">Name</label>
         <input type="text" name="nameField" id="nameField">
-        <div id="nameFieldError">Field Required</div>
+        <div id="nameFieldError"></div>
       </div>
       <div class="field">
         <label for="lastNameField">Last Name</label>
         <input type="text" name="lastNameField" id="lastNameField">
-        <div id="lastNameFieldError">Field Required</div>
+        <div id="lastNameFieldError"></div>
       </div>
+      <div class="field">
+        <label for="claimField">Claim</label>
+        <textarea name="claimField" id="claimField" cols="30" rows="10"></textarea>
+        <div id="claimFieldError"></div>
+      </div>
+
+
 
       <button type="submit" id="submitForm">Send</button>
     </form>

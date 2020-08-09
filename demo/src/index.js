@@ -28,6 +28,17 @@ const form = new CreateCatForm(
         },
       ],
       onEvent: 'blur'
+    },
+    {
+      field: document.querySelector('#claimField'),
+      invalidMessageElement: document.querySelector('#claimFieldError'),
+      validations: [
+        {
+          type: 'required',
+          invalidMessage: 'You must write your claim'
+        },
+      ],
+      onEvent: 'blur'
     }
   ]
 );
