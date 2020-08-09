@@ -9,7 +9,7 @@ import * as validations from './validation-types'
 export const validateByListOfType = (value, validationsList) => {
   let isValid = false
   let invalidMessage = ''
-  for (let i = validationsList.length - 1; i >= 0; i--) {
+  for (let i = 0; i < validationsList.length; i++) {
     const functionToCall = validationsList[i].type
     if (validations[functionToCall + 'Field'](value)) {
       isValid = true
