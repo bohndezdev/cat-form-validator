@@ -64,9 +64,6 @@ var form = new catForm.CreateForm([
   ]
 );
 
-// Validate form with listeners (When onEven be triggered).
-form.validateWithEventListener();
-
 // Validate form (When submit button be pressed).
 document.querySelector('#submitForm').addEventListener('click', function(e) {
   e.preventDefault()
