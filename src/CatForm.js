@@ -4,6 +4,8 @@ export class CreateCatForm {
   constructor (fields, submitElement = null) {
     this.fields = fields
     this.isValid = false
+
+    this.validateWithEventListener()
   }
 
   /**
@@ -12,7 +14,11 @@ export class CreateCatForm {
    */
   validateWithEventListener () {
     for (let i = 0; i < this.fields.length; i++) {
-      const field = new Field(this.fields[i].field, this.fields[i].validations, this.fields[i].onEvent)
+      const field = new Field(
+        this.fields[i].field,
+        this.fields[i].invalidMessageElement,
+        this.fields[i].validations,
+        this.fields[i].onEvent)
 
       field.validateWithEventListener()
     }
@@ -25,7 +31,11 @@ export class CreateCatForm {
   validate () {
     this.isValid = true
     for (let i = 0; i < this.fields.length; i++) {
-      const field = new Field(this.fields[i].field, this.fields[i].validations, this.fields[i].onEvent)
+      const field = new Field(
+        this.fields[i].field,
+        this.fields[i].invalidMessageElement,
+        this.fields[i].validations,
+        this.fields[i].onEvent)
 
       if (!field.validate()) {
         this.isValid = false

@@ -1,9 +1,10 @@
 import { validateByListOfType } from './validators/validateByListOfType.validator'
-import { addValidCssClass, removeValidCssClass } from './utils'
+import { fieldView } from './utils'
 
 export class Field {
-  constructor (field, validations, onEvent = null) {
+  constructor (field, invalidMessageElement, validations, onEvent = null) {
     this.field = field
+    this.invalidMessageElement = invalidMessageElement
     this.validations = validations
     this.onEvent = onEvent
     this.isValid = false
@@ -16,12 +17,14 @@ export class Field {
   validateWithEventListener () {
     if (this.onEvent) {
       this.field.addEventListener(this.onEvent, (e) => {
-        if (validateByListOfType(this.field.value, this.validations)) {
-          addValidCssClass(this.field)
+        const validationResult = validateByListOfType(this.field.value, this.validations)
+
+        if (validationResult.isValid) {
           this.isValid = true
+          fieldView(this.field, this.invalidMessageElement, validationResult.invalidMessage, validationResult.isValid)
         } else {
-          removeValidCssClass(this.field)
           this.isValid = false
+          fieldView(this.field, this.invalidMessageElement, validationResult.invalidMessage, validationResult.isValid)
         }
       })
     }
@@ -32,12 +35,14 @@ export class Field {
    * @return {boolean} True if the field is valid, False if is not.
    */
   validate () {
-    if (validateByListOfType(this.field.value, this.validations)) {
-      addValidCssClass(this.field)
+    const validationResult = validateByListOfType(this.field.value, this.validations)
+
+    if (validationResult.isValid) {
       this.isValid = true
+      fieldView(this.field, this.invalidMessageElement, validationResult.invalidMessage, validationResult.isValid)
     } else {
-      removeValidCssClass(this.field)
       this.isValid = false
+      fieldView(this.field, this.invalidMessageElement, validationResult.invalidMessage, validationResult.isValid)
     }
     return this.isValid
   }

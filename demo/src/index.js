@@ -5,16 +5,27 @@ const form = new CreateCatForm(
   [
     {
       field: document.querySelector('#nameField'),
+      invalidMessageElement: document.querySelector('#nameFieldError'),
       validations: [
-        'required',
-        'text'
+        {
+          type: 'required',
+          invalidMessage: 'This field is required'
+        },
+        {
+          type: 'text',
+          invalidMessage: 'This field is only for text'
+        },
       ],
       onEvent: 'blur'
     },
     {
       field: document.querySelector('#lastNameField'),
+      invalidMessageElement: document.querySelector('#lastNameFieldError'),
       validations: [
-        'required'
+        {
+          type: 'required',
+          invalidMessage: 'This field is required'
+        },
       ],
       onEvent: 'blur'
     }
@@ -22,7 +33,7 @@ const form = new CreateCatForm(
 );
 
 // Validate form with listeners
-form.validateWithEventListener();
+// form.validateWithEventListener();
 
 // Validate form
 document.querySelector('#submitForm').addEventListener('click', function(e) {
