@@ -16,12 +16,16 @@ export class Field {
   validateWithEventListener () {
     if (this.onEvent) {
       this.field.addEventListener(this.onEvent, (e) => {
-        if (validateByListOfType(this.field.value, this.validations)) {
-          addValidCssClass(this.field)
+        const validationResult = validateByListOfType(this.field.value, this.validations)
+
+        if (validationResult.isValid) {
           this.isValid = true
+          addValidCssClass(this.field)
+          console.log(validationResult.invalidMessage)
         } else {
-          removeValidCssClass(this.field)
           this.isValid = false
+          removeValidCssClass(this.field)
+          console.log(validationResult.invalidMessage)
         }
       })
     }
@@ -32,12 +36,16 @@ export class Field {
    * @return {boolean} True if the field is valid, False if is not.
    */
   validate () {
-    if (validateByListOfType(this.field.value, this.validations)) {
-      addValidCssClass(this.field)
+    const validationResult = validateByListOfType(this.field.value, this.validations)
+
+    if (validationResult.isValid) {
       this.isValid = true
+      addValidCssClass(this.field)
+      console.log(validationResult.invalidMessage)
     } else {
-      removeValidCssClass(this.field)
       this.isValid = false
+      removeValidCssClass(this.field)
+      console.log(validationResult.invalidMessage)
     }
     return this.isValid
   }

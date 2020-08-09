@@ -8,14 +8,19 @@ import * as validations from './validation-types'
  */
 export const validateByListOfType = (value, validationsList) => {
   let isValid = false
+  let invalidMessage = ''
   for (let i = validationsList.length - 1; i >= 0; i--) {
-    const functionToCall = validationsList[i]
+    const functionToCall = validationsList[i].type
     if (validations[functionToCall + 'Field'](value)) {
       isValid = true
     } else {
       isValid = false
+      invalidMessage = validationsList[i].invalidMessage
       break
     }
   }
-  return isValid
+  return {
+    isValid,
+    invalidMessage
+  }
 }

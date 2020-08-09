@@ -6,15 +6,24 @@ const form = new CreateCatForm(
     {
       field: document.querySelector('#nameField'),
       validations: [
-        'required',
-        'text'
+        {
+          type: 'required',
+          invalidMessage: 'This field is required'
+        },
+        {
+          type: 'text',
+          invalidMessage: 'This field is only for text'
+        },
       ],
       onEvent: 'blur'
     },
     {
       field: document.querySelector('#lastNameField'),
       validations: [
-        'required'
+        {
+          type: 'required',
+          invalidMessage: 'This field is required'
+        },
       ],
       onEvent: 'blur'
     }
