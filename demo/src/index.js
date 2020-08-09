@@ -30,6 +30,21 @@ const form = new CreateCatForm(
       onEvent: 'blur'
     },
     {
+      field: document.querySelector('#emailField'),
+      invalidMessageElement: document.querySelector('#emailFieldError'),
+      validations: [
+        {
+          type: 'required',
+          invalidMessage: 'This field is required'
+        },
+        {
+          type: 'email',
+          invalidMessage: 'Must be a valid email address'
+        },
+      ],
+      onEvent: 'blur'
+    },
+    {
       field: document.querySelector('#claimField'),
       invalidMessageElement: document.querySelector('#claimFieldError'),
       validations: [
