@@ -1,9 +1,10 @@
 import { validateByListOfType } from './validators/validateByListOfType.validator'
-import { addValidCssClass, removeValidCssClass } from './utils'
+import { addValidCssClass, removeValidCssClass, showInvalidMessage, hideInvalidMessage } from './utils'
 
 export class Field {
   constructor (field, invalidMessageElement, validations, onEvent = null) {
     this.field = field
+    this.invalidMessageElement = invalidMessageElement
     this.validations = validations
     this.onEvent = onEvent
     this.isValid = false
@@ -21,10 +22,12 @@ export class Field {
         if (validationResult.isValid) {
           this.isValid = true
           addValidCssClass(this.field)
+          hideInvalidMessage(this.invalidMessageElement, validationResult.invalidMessage)
           console.log(validationResult.invalidMessage)
         } else {
           this.isValid = false
           removeValidCssClass(this.field)
+          showInvalidMessage(this.invalidMessageElement, validationResult.invalidMessage)
           console.log(validationResult.invalidMessage)
         }
       })
@@ -41,11 +44,13 @@ export class Field {
     if (validationResult.isValid) {
       this.isValid = true
       addValidCssClass(this.field)
+      hideInvalidMessage(this.invalidMessageElement, validationResult.invalidMessage)
       console.log(validationResult.invalidMessage)
     } else {
       this.isValid = false
       removeValidCssClass(this.field)
       console.log(validationResult.invalidMessage)
+      showInvalidMessage(this.invalidMessageElement, validationResult.invalidMessage)
     }
     return this.isValid
   }
