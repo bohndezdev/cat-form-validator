@@ -1,6 +1,6 @@
 import { Field } from './Field'
 
-export class CreateForm {
+export class CreateCatForm {
   constructor (fields, submitElement = null) {
     this.fields = fields
     this.isValid = false

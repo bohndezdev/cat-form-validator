@@ -1,14 +1,7 @@
-import { CreateForm } from 'cat-form-validator';
+import { CreateCatForm } from 'cat-form-validator';
 
-const saludar = (nombre) => {
-  console.log(`Hola ${nombre}`)
-}
-
-saludar('Boris!!!')
-
-
-  // Crate a form
-const form = new CreateForm(
+// Crate a form
+const form = new CreateCatForm(
   [
     {
       field: document.querySelector('#nameField'),
