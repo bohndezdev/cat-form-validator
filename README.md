@@ -93,6 +93,11 @@ Now you can edit the files in `src/`. With each change o them webpack deploy a `
 1. `npm install`
 2. `npm run build`. This will compile es6+ to es5 and minify the `lib/cat-form.js` for using on a webpage.
 
+### How to run Demo
+1. `cd demo`
+2. `npm install`
+3. `npm start` This makes the dist directory with the demo. Now, you cant go to http://localhost:8080.
+
 ---
 
 :smile_cat:

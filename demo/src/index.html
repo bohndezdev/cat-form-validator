@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Demo Cat Form Validator</title>
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 
   <style>
     .wrap {
@@ -43,41 +43,6 @@
       <button type="submit" id="submitForm">Send</button>
     </form>
   </div>
-
-  <script src="./../lib/cat-form.js"></script>
-
-  <script>
-
-    // Crate a form
-    var form = new catForm.CreateForm([
-        {
-          field: document.querySelector('#nameField'),
-          validations: [
-            'required',
-            'text'
-          ],
-          onEvent: 'blur'
-        },
-        {
-          field: document.querySelector('#lastNameField'),
-          validations: [
-            'required'
-          ],
-          onEvent: 'blur'
-        }
-      ]
-    );
-
-    // Validate form with listeners
-    form.validateWithEventListener();
-    
-
-    // Validate form
-    document.querySelector('#submitForm').addEventListener('click', function(e) {
-      e.preventDefault()
-      form.validate();
-    })
-  </script>
 
 
 </body>
