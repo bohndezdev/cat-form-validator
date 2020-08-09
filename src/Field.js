@@ -2,7 +2,7 @@ import { validateByListOfType } from './validators/validateByListOfType.validato
 import { addValidCssClass, removeValidCssClass } from './utils'
 
 export class Field {
-  constructor (field, validations, onEvent = null) {
+  constructor (field, invalidMessageElement, validations, onEvent = null) {
     this.field = field
     this.validations = validations
     this.onEvent = onEvent

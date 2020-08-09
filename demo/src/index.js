@@ -5,6 +5,7 @@ const form = new CreateCatForm(
   [
     {
       field: document.querySelector('#nameField'),
+      invalidMessageElement: document.querySelector('#nameFieldError'),
       validations: [
         {
           type: 'required',
@@ -19,6 +20,7 @@ const form = new CreateCatForm(
     },
     {
       field: document.querySelector('#lastNameField'),
+      invalidMessageElement: document.querySelector('#lastNameFieldError'),
       validations: [
         {
           type: 'required',
