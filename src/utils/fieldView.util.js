@@ -12,11 +12,25 @@ import { removeValidCssClass } from './removeValidCssClass.util'
  * @return {void}                         Doesn't return anything
  */
 export const fieldView = (field, elementMessage, message, isValid) => {
-  if (isValid) {
-    addValidCssClass(field)
-    hideInvalidMessage(elementMessage, message)
-  } else {
-    removeValidCssClass(field)
-    showInvalidMessage(elementMessage, message)
+  if (field.length > 0) { // For Fields that have many inputs. For expample: input radio
+    if (isValid) {
+      for (let i = 0; i < field.length; i++) {
+        addValidCssClass(field[i])
+      }
+      hideInvalidMessage(elementMessage, message)
+    } else {
+      for (let i = 0; i < field.length; i++) {
+        removeValidCssClass(field[i])
+      }
+      showInvalidMessage(elementMessage, message)
+    }
+  } else { // For unique fields: input text, textarea, etc
+    if (isValid) {
+      addValidCssClass(field)
+      hideInvalidMessage(elementMessage, message)
+    } else {
+      removeValidCssClass(field)
+      showInvalidMessage(elementMessage, message)
+    }
   }
 }
