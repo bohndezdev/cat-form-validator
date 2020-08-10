@@ -1,10 +1,10 @@
 /**
- * Function to validate if a string has a text
- * @param  {string} value Value of the field
- * @return {boolean} Return true if has a value and false if not
+ * Validate if a Field value has a text.
+ * @param  {HTML <input>} field Field to evaluate.
+ * @return {boolean} Return True if Field has a string. Flse if not.
  */
-export const requiredField = (value) => {
-  if (value === null || value.length === 0 || /^\s+$/.test(value)) {
+export const requiredField = (field) => {
+  if (field.value === null || field.value.length === 0 || /^\s+$/.test(field.value)) {
     return false
   }
 

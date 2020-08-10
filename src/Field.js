@@ -17,7 +17,7 @@ export class Field {
   validateWithEventListener () {
     if (this.onEvent) {
       this.field.addEventListener(this.onEvent, (e) => {
-        const validationResult = validateByListOfType(this.field.value, this.validations)
+        const validationResult = validateByListOfType(this.field, this.validations)
 
         if (validationResult.isValid) {
           this.isValid = true
@@ -35,7 +35,7 @@ export class Field {
    * @return {boolean} True if the field is valid, False if is not.
    */
   validate () {
-    const validationResult = validateByListOfType(this.field.value, this.validations)
+    const validationResult = validateByListOfType(this.field, this.validations)
 
     if (validationResult.isValid) {
       this.isValid = true
