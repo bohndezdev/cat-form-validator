@@ -15,17 +15,19 @@ export class Field {
    * @return {void} Doesn't return anything.
    */
   validateWithEventListener () {
-    console.log()
-    if (this.onEvent && !(this.field.length > 0)) {
-      this.field.addEventListener(this.onEvent, (e) => {
-        this.validate()
-      })
-    } else {
+    if (this.onEvent &&
+       this.field.length > 0 &&
+       !(this.field instanceof HTMLTextAreaElement) &&
+       !(this.field instanceof HTMLSelectElement)) {
       for (let i = 0; i < this.field.length; i++) {
         this.field[i].addEventListener(this.onEvent, (e) => {
           this.validate()
         })
       }
+    } else if (this.onEvent) {
+      this.field.addEventListener(this.onEvent, (e) => {
+        this.validate()
+      })
     }
   }
 
