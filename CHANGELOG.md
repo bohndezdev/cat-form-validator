@@ -1,3 +1,16 @@
+**0.3.0** (2020-16-09)
+==================
+* Add | Email validation ('email')
+* Add | Checkbox validation ('checkbox')
+* Add | Radio validation ('radio')
+* Add | Select validation ('select')
+* Refactor | Improved Required Validator to validate any more fields. For now:
+  * Select
+  * Input Radio
+  * Input Text
+  * Input checkbox
+  * Textarea
+
 **0.2.0** (2020-08-09)
 ==================
 * Change | Now Listeners are added when a form is created. You don't need to "validateWithEventListener()" anymore.

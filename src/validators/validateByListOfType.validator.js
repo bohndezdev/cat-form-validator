@@ -1,17 +1,17 @@
 import * as validations from './validation-types'
 
 /**
- * Validates a VALUE against a list of validations Types
- * @param  {string} value                  Value to evaluate
+ * Validates a Field against a list of validations Types
+ * @param  {HTMLElement}                   field Field to evaluate
  * @param  {Array<string>} validationsList An array of string
- * @return {boolean}                       if one of the validations doesn's pass return false.
+ * @return {boolean}                       if one of the validations doesn't pass return false.
  */
-export const validateByListOfType = (value, validationsList) => {
+export const validateByListOfType = (field, validationsList) => {
   let isValid = false
   let invalidMessage = ''
-  for (let i = validationsList.length - 1; i >= 0; i--) {
+  for (let i = 0; i < validationsList.length; i++) {
     const functionToCall = validationsList[i].type
-    if (validations[functionToCall + 'Field'](value)) {
+    if (validations[functionToCall + 'Field'](field)) {
       isValid = true
     } else {
       isValid = false

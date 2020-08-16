@@ -1,11 +1,11 @@
 /**
- * Validate if a value has only letters.
- * @param  {string} value String to evaluate.
+ * Validate if a Field has only letters.
+ * @param  {HTML <input>} field Input element to evaluate.
  * @return {boolean} Return true if has only letters and false if not.
  */
-export const textField = (value) => {
-  const expr = /^[a-zA-Z]*$/
-  if (!expr.test(value)) {
+export const textField = (field) => {
+  const expr = /^[a-zA-Z\s]*$/
+  if (!expr.test(field.value)) {
     return false
   } else {
     return true

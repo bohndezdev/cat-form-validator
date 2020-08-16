@@ -15,17 +15,18 @@ export class Field {
    * @return {void} Doesn't return anything.
    */
   validateWithEventListener () {
-    if (this.onEvent) {
+    if (this.onEvent &&
+       this.field.length > 0 &&
+       !(this.field instanceof HTMLTextAreaElement) &&
+       !(this.field instanceof HTMLSelectElement)) {
+      for (let i = 0; i < this.field.length; i++) {
+        this.field[i].addEventListener(this.onEvent, (e) => {
+          this.validate()
+        })
+      }
+    } else if (this.onEvent) {
       this.field.addEventListener(this.onEvent, (e) => {
-        const validationResult = validateByListOfType(this.field.value, this.validations)
-
-        if (validationResult.isValid) {
-          this.isValid = true
-          fieldView(this.field, this.invalidMessageElement, validationResult.invalidMessage, validationResult.isValid)
-        } else {
-          this.isValid = false
-          fieldView(this.field, this.invalidMessageElement, validationResult.invalidMessage, validationResult.isValid)
-        }
+        this.validate()
       })
     }
   }
@@ -35,7 +36,7 @@ export class Field {
    * @return {boolean} True if the field is valid, False if is not.
    */
   validate () {
-    const validationResult = validateByListOfType(this.field.value, this.validations)
+    const validationResult = validateByListOfType(this.field, this.validations)
 
     if (validationResult.isValid) {
       this.isValid = true
