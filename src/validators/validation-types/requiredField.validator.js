@@ -1,6 +1,7 @@
 import { selectField } from './selectField.validator'
 import { radioField } from './radioField.validator'
 import { checkboxField } from './checkboxField.validator'
+import { textRequired } from './textRequired.validator'
 
 /**
  * Validate if a Field value has a text.
@@ -12,9 +13,7 @@ export const requiredField = (field) => {
   if (field instanceof HTMLInputElement) {
     // Text
     if (field.type === 'text') {
-      if (field.value === null || field.value.length === 0 || /^\s+$/.test(field.value)) {
-        return false
-      }
+      return selectField(field)
     }
 
     // Single radio button selected by Id,  querySelector or other that return only one element.
@@ -26,6 +25,11 @@ export const requiredField = (field) => {
     if (field.type === 'checkbox') {
       return checkboxField(field)
     }
+  }
+
+  // Textarea
+  if (field instanceof HTMLTextAreaElement) {
+    return textRequired(field)
   }
 
   // Select element
