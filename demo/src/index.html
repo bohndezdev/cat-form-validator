@@ -17,12 +17,18 @@
     input, textarea {
       width: 100%;
     }
+    input[type="checkbox"],
+    input[type="radio"] {
+      width: auto;
+    }
     input.cat-form-invalid,
     textarea.cat-form-invalid {
       border: 1px solid red;
     }
     .field {
-      margin-bottom: 10px;
+      margin: 10px 0 15px;
+      padding: 5px 0;
+      border-bottom: 1px solid #ccc;
     }
   </style>
 </head>
@@ -31,32 +37,54 @@
   <div class="wrap">
     <form action="">
       <div class="field">
-        <label for="nameField">Name</label>
-        <input type="text" name="nameField" id="nameField">
+        <label for="nameField">Your cat's name</label>
+        <input type="text" name="nameField" id="nameField" placeholder="First name">
         <div id="nameFieldError"></div>
       </div>
       <div class="field">
-        <label for="lastNameField">Last Name</label>
-        <input type="text" name="lastNameField" id="lastNameField">
+        <label for="lastNameField">Your cat's last name</label>
+        <input type="text" name="lastNameField" id="lastNameField" placeholder="Last name">
         <div id="lastNameFieldError"></div>
       </div>
       <div class="field">
-        <label for="emailField">Email</label>
-        <input type="text" name="emailField" id="emailField">
+        <label for="emailField">Ypur cat's email</label>
+        <input type="text" name="emailField" id="emailField" placeholder="mail@mail.cl">
         <div id="emailFieldError"></div>
       </div>
       <div class="field">
-        <label for="claimField">Claim</label>
-        <textarea name="claimField" id="claimField" cols="30" rows="10"></textarea>
-        <div id="claimFieldError"></div>
+        <label for="descriptionField">Description of your cat</label>
+        <textarea name="descriptionField" id="descriptionField" cols="30" rows="10"></textarea>
+        <div id="descriptionFieldError"></div>
       </div>
-
-
+      <div class="field">
+        <input type="checkbox" name="checkboxField" id="checkboxField" value="ok">
+        <label for="checkboxField">Do you like cats?</label>
+        <div id="checkboxFieldError"></div>
+      </div>
+      <div class="field">
+        <input name="radioField" type="radio" value="one" id="radioField"> I love cats.
+        <div id="radioFieldError"></div>
+      </div>
+      <div class="field">
+        <label>How many cats do you have?</label> <br>
+        <input name="myOptions2" type="radio" value="one"> one
+        <input name="myOptions2" type="radio" value="two"> two
+        <input name="myOptions2" type="radio" value="three"> three
+        <div id="radioFieldError2"></div>
+      </div>
+      <div class="field">
+        <select name="selectField" id="selectField">
+            <option value="">Choose your pet</option>
+            <option value="Cat">Cat</option>
+            <option value="Dog">Dog</option>
+            <option value="Duck">Duck</option>
+        </select>
+        <div id="selectFieldError"></div>
+      </div>
 
       <button type="submit" id="submitForm">Send</button>
     </form>
   </div>
-
 
 </body>
 </html>

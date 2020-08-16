@@ -14,9 +14,10 @@ Simple JS form validator
         ├── Form.js                      # Main function to create a form
 
 ## Use
-1. Go to `lib/` directory and copy `cat-form.js` file to your project.
-2. Add this line `<script src="path-to-CAT-FORM-in-your-project/cat-form.js"></script>` before `</body>` end tag.
-3. Validate some form fields.
+1. Install the library: `npm install cat-form-validator --save`.
+2. Import where you want `import { CreateCatForm } from 'cat-form-validator';`
+3. Create `form` in your html file.
+4. Make your validatons.
 
 ### Example of validation
 We ar going to validate a form with 2 fields.
@@ -27,14 +28,49 @@ We ar going to validate a form with 2 fields.
 ```html
 <form action="">
   <div class="field">
-    <label for="nameField">Name</label>
-    <input type="text" name="nameField" id="nameField">
+    <label for="nameField">Your cat's name</label>
+    <input type="text" name="nameField" id="nameField" placeholder="First name">
     <div id="nameFieldError"></div>
   </div>
   <div class="field">
-    <label for="lastNameField">Last Name</label>
-    <input type="text" name="lastNameField" id="lastNameField">
+    <label for="lastNameField">Your cat's last name</label>
+    <input type="text" name="lastNameField" id="lastNameField" placeholder="Last name">
     <div id="lastNameFieldError"></div>
+  </div>
+  <div class="field">
+    <label for="emailField">Ypur cat's email</label>
+    <input type="text" name="emailField" id="emailField" placeholder="mail@mail.cl">
+    <div id="emailFieldError"></div>
+  </div>
+  <div class="field">
+    <label for="descriptionField">Description of your cat</label>
+    <textarea name="descriptionField" id="descriptionField" cols="30" rows="10"></textarea>
+    <div id="descriptionFieldError"></div>
+  </div>
+  <div class="field">
+    <input type="checkbox" name="checkboxField" id="checkboxField" value="ok">
+    <label for="checkboxField">Do you like cats?</label>
+    <div id="checkboxFieldError"></div>
+  </div>
+  <div class="field">
+    <input name="radioField" type="radio" value="one" id="radioField"> I love cats.
+    <div id="radioFieldError"></div>
+  </div>
+  <div class="field">
+    <label>How many cats do you have?</label> <br>
+    <input name="myOptions2" type="radio" value="one"> one
+    <input name="myOptions2" type="radio" value="two"> two
+    <input name="myOptions2" type="radio" value="three"> three
+    <div id="radioFieldError2"></div>
+  </div>
+  <div class="field">
+    <select name="selectField" id="selectField">
+        <option value="">Choose your pet</option>
+        <option value="Cat">Cat</option>
+        <option value="Dog">Dog</option>
+        <option value="Duck">Duck</option>
+    </select>
+    <div id="selectFieldError"></div>
   </div>
 
   <button type="submit" id="submitForm">Send</button>
@@ -44,8 +80,11 @@ We ar going to validate a form with 2 fields.
 
 #### Your JS file
 ```js
+// First call the library
+import { CreateCatForm } from 'cat-form-validator';
+
 // Crate a form
-var form = new catForm.CreateCatForm(
+const form = new CreateCatForm(
   [
     {
       field: document.querySelector('#nameField'),
@@ -73,27 +112,116 @@ var form = new catForm.CreateCatForm(
       ],
       onEvent: 'blur'
     },
+    {
+      field: document.querySelector('#emailField'),
+      invalidMessageElement: document.querySelector('#emailFieldError'),
+      validations: [
+        {
+          type: 'required',
+          invalidMessage: 'This field is required'
+        },
+        {
+          type: 'email',
+          invalidMessage: 'Must be a valid email address'
+        },
+      ],
+      onEvent: 'blur'
+    },
+    {
+      field: document.querySelector('#descriptionField'),
+      invalidMessageElement: document.querySelector('#descriptionFieldError'),
+      validations: [
+        {
+          type: 'required',
+          invalidMessage: 'You must describe your cat'
+        },
+        {
+          type: 'text',
+          invalidMessage: 'This field is only for text'
+        },
+      ],
+      onEvent: 'blur'
+    },
+    {
+      field: document.querySelector('#checkboxField'),
+      invalidMessageElement: document.querySelector('#checkboxFieldError'),
+      validations: [
+        {
+          type: 'required',
+          invalidMessage: 'You must check it'
+        },
+      ],
+      onEvent: 'change'
+    },
+    {
+      field: document.querySelector('#radioField'),
+      invalidMessageElement: document.querySelector('#radioFieldError'),
+      validations: [
+        {
+          type: 'required',
+          invalidMessage: 'You must choose one'
+        },
+      ],
+      onEvent: 'change'
+    },
+    {
+      field: document.getElementsByName('myOptions2'),
+      invalidMessageElement: document.querySelector('#radioFieldError2'),
+      validations: [
+        {
+          type: 'required',
+          invalidMessage: 'You must choose one'
+        },
+      ],
+      onEvent: 'change'
+    },
+    {
+      field: document.querySelector('#selectField'),
+      invalidMessageElement: document.querySelector('#selectFieldError'),
+      validations: [
+        {
+          type: 'required',
+          invalidMessage: 'You must choose one pet'
+        },
+      ],
+      onEvent: 'change'
+    },
   ]
 );
 
-// Validate form (When submit button be pressed).
+// Validate form (when submit button be pressed).
 document.querySelector('#submitForm').addEventListener('click', function(e) {
   e.preventDefault()
-  form.validate();
-})
-````
+  console.log(form.validate()); // Validate Form and show its status con console.
+});
+```
+
+### Import on <script> tag
+If you want to use it imported in a `<script>` tag:
+1. Import the library `<script src="route-to-library/cat-form.js">` before `</body>` tag.
+2. Use `catForm` object to create a form. Example:
+  ```js
+  <script src="route-to-library/cat-form.js"></script>
+  <script>
+    const myForm = new catForm.CreateCatForm([args]);
+  </script>
+  ```
 
 ## Options :smirk_cat:
 Option | Type | Description
 ------ | ---- | -----------
 field  | HTML Element | The input or field that you want to validate
+invalidMessageElement  | HTML Element | The element to insert the error message
 validations  | Array<object> | A list of type of validations for the input or field
 onEvent  | string | Name of the event that you want to trigger a validation on an input or field
 
-### Fields
+### Suported Fields
 For now those are the fields types that you can validate:
-* input `<input>`
-* textarea `<textarea>
+* input `<input type="text">`
+* input `<input type="checkbox">`
+* input `<input type="radio">`
+* textarea `<textarea>`
+* select `<select>`
 
 ### Validations
 An example of an object for the Array validations:
@@ -107,6 +235,10 @@ An example of an object for the Array validations:
 #### Types accepted:
   * 'required'
   * 'text'
+  * 'radio'  (Same as required)
+  * 'checkbox'  (Same as required)
+  * 'email'
+  * 'select' (Same as required)
 
 ## Develop
 ### How to run develop
@@ -123,6 +255,9 @@ Now you can edit the files in `src/`. With each change o them webpack deploy a `
 1. `cd demo`
 2. `npm install`
 3. `npm start` This makes the dist directory with the demo. Now, you cant go to http://localhost:8080.
+
+##  Version Control
+This project is manage with Git Flow
 
 ---
 
