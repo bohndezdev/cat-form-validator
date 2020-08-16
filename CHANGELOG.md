@@ -1,4 +1,4 @@
-**0.3.0** (2020-08-09)
+**0.3.0** (2020-16-09)
 ==================
 * Add | Email validation ('email')
 * Add | Checkbox validation ('checkbox')
